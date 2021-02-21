@@ -19,22 +19,22 @@ use Psr\SimpleCache\CacheInterface;
 class AtolClient
 {
   /** @var string */
-  private $host = 'https://online.atol.ru';
+  protected $host = 'https://online.atol.ru';
 
   /** @var string */
-  private $apiVersion = 'v4';
+  protected $apiVersion = 'v4';
 
   /** @var string */
-  private $token;
+  protected $token;
 
   /** @var string */
-  private $groupCode;
+  protected $groupCode;
 
   /** @var LoggerInterface */
-  private $logger;
+  protected $logger;
 
   /** @var CacheInterface */
-  private $cache;
+  protected $cache;
 
   /**
    * @param string $login Shop ID

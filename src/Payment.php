@@ -18,19 +18,30 @@ use ItQuasar\AtolOnline\Exception\SdkException;
  */
 class Payment implements RequestPart
 {
-  /** @var int Электронный вид оплаты */
+
+  // наличные
+  const TYPE_CASH = 0;
+
+  // безналичный
   const TYPE_ELECTRONIC = 1;
 
+  // предварительная оплата (зачет аванса и (или) предыдущих платежей)
+  const TYPE_PREPAYMENT = 2;
+
+  // постоплата (кредит)
+  const TYPE_CREDIT = 3;
+
+  // иная форма оплаты (встречное предоставление)
+  const TYPE_OTHER = 4;
+
   /** @var int */
-  private $type = 1;
+  protected $type = 1;
 
   /** @var float */
-  private $sum = null;
+  protected $sum = null;
 
   /**
    * Возвращает вид оплаты.
-   *
-   * @return int
    */
   public function getType(): int
   {
@@ -44,8 +55,6 @@ class Payment implements RequestPart
    * - @see Payment::TYPE_ELECTRONIC – электронный;
    * - 2 – 9 – расширенные типы оплаты. Для каждого фискального типа оплаты можно указать расширенный тип оплаты.
    *
-   * @param int $type
-   *
    * @return $this
    */
   public function setType(int $type): self
@@ -57,8 +66,6 @@ class Payment implements RequestPart
 
   /**
    * Возвращает сумму к оплате в рублях.
-   *
-   * @return float
    */
   public function getSum(): float
   {
@@ -69,8 +76,6 @@ class Payment implements RequestPart
    * Устанавливает сумму к оплате в рублях:
    * - целая часть не более 8 знаков;
    * - дробная часть не более 2 знаков.
-   *
-   * @param float $sum
    *
    * @return $this
    */
