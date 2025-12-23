@@ -1,6 +1,5 @@
 {
   "name": "djjerry85/atol-online",
-  "version": "4.1.1",
   "description": "Библиотека для работы с АТОЛ Онлайн. Fork it-quasar/atol-online",
   "type": "library",
   "license": "GPL-3.0-or-later",
